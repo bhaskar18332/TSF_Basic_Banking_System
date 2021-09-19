@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Transfer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container-fluid">
+    <div class="row flex-nowrap">
+        <div class="col py-3">
+        	<h1>
+        		Enter Details
+        	</h1>
+        	<hr style="border: black; border-width: 0; background-color: black; height: 20px;">
+
+			<form class="form-inline" method = "POST" action="{% url 'transfer' %}">
+				{% csrf_token %}
+					{% for message in messages %}
+            <p style="color: red;">{{message}}</p>
+          {% endfor %}
+		      <select class="form-control" name = "name1" required="Select Sender!!">
+		      	<option selected="true" disabled="disabled">Select Sender</option>
+		      	{% for user in users %}
+    		      <option>{{user.name}}</option>
+		        {% endfor %}
+		      </select>
+
+		      <select class= "form-control" name = "name2">
+		      	<option selected="true" disabled="disabled">Select Receiver</option>
+		      	{% for user in users %}
+		        	<option >{{user.name}}</option>
+		        {% endfor %}
+		      </select>
+
+		      <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount" name = "amount" required="">
+
+			  <button type="submit" class="btn btn-primary">Transfer</button>
+			</form>
+        </div>
+    </div>
+  </body>
+</html>
+{% endblock %}
