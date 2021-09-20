@@ -1,10 +1,7 @@
 from django.shortcuts import render
 from .models import *
 from .forms import *
-<<<<<<< HEAD
-=======
-import logging
->>>>>>> caed37be1a55fc0e834ed88a1ce98a401dd2eee7
+
 from django.contrib import messages
 
 # Create your views here.
